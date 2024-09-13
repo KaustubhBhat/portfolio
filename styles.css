@@ -1,0 +1,735 @@
+/* Basic Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* General body styling */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: radial-gradient(circle, #0a0f24, #1d2b53, #3e4a76, #1a1c2b);
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Navigation */
+/* Fixed navigation bar */
+nav {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Highlight active link by changing font color and making it bold */
+ul li a.active,
+ul li a:hover {
+  color: blueviolet; /* Change the font color */
+  font-weight: bold; /* Make the font bold */
+}
+
+/* Ensure links have default styling */
+ul li a {
+  color: #fff; /* Default link color */
+  text-decoration: none; /* Remove underline from links */
+}
+
+/* Positioning the initials ("KB") */
+nav .nav-brand {
+  margin-left: 15%; /* Positions KB at 15% from the left */
+  display: flex;
+  align-items: center;
+}
+
+nav .nav-brand img {
+  height: 30px;
+  margin-right: 5px;
+}
+
+/* Navigation Sections */
+nav ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+  justify-content: flex-end;
+  margin-right: 15%; /* Positions the nav links to end at 70% */
+  align-items: center;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px 15px;
+  display: inline-block;
+}
+
+/* About Me Section */
+#about {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+  background: transparent; /* Use a transparent background */
+  color: #ffffff; /* White text */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+/* Container for About Me Section */
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%; /* Central 70% width */
+  height: 100%; /* Full height */
+  flex-wrap: wrap; /* Ensure responsive wrapping */
+}
+
+/* Left side: Text content */
+.about-left {
+  flex: 1;
+  padding-right: 30px; /* Space between text and image */
+  text-align: left; /* Left align text */
+}
+
+.about-left h2 {
+  font-size: 48px; /* Font size */
+  margin-bottom: 25px; /* Space below heading */
+  font-family: Arial, sans-serif; /* Font family */
+  font-weight: bold; /* Bold weight for the heading */
+  background: linear-gradient(135deg, #ffd700, #ff8c00); /* Gradient color */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-left p {
+  font-size: 20px; /* Font size */
+  line-height: 1.6; /* Line spacing */
+  margin-bottom: 18px; /* Space between paragraphs */
+  font-family: Arial, sans-serif; /* Same font family as Introduction */
+}
+
+/* Right side: Image */
+.about-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-image {
+  max-width: 90%; /* Image size remains the same */
+  height: auto;
+  border-radius: 10px; /* Optional: Rounded image */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column-reverse; /* Stack vertically on small screens */
+    text-align: center; /* Center text */
+    justify-content: center; /* Ensure proper centering on small screens */
+  }
+
+  .about-left {
+    padding-right: 0;
+    margin-top: 20px; /* Space between image and text */
+  }
+
+  .about-left h2 {
+    font-size: 36px; /* Adjusted font size for smaller screens */
+  }
+
+  .about-left p {
+    font-size: 18px; /* Adjusted font size for smaller screens */
+  }
+
+  .about-image {
+    max-width: 100%; /* Adjust image size for small screens */
+  }
+}
+
+/* Contact Me button */
+.contact-link {
+  background-color: #ff6347;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  z-index: 1;
+}
+
+.contact-link:hover {
+  background-color: #ff4500;
+}
+
+/* Introduction Section */
+#introduction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  height: 100vh; /* Full viewport height */
+  background: transparent;
+}
+
+.intro-container {
+  display: flex;
+  width: 70%; /* Central 70% width */
+  height: 100%; /* Full height */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+}
+
+.intro-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-image {
+  max-width: 100%; /* Adjusted image size */
+  height: auto;
+}
+
+.intro-right {
+  flex: 1;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center align vertically */
+  text-align: left; /* Left align text */
+}
+
+.intro-right h1 {
+  font-size: 70px; /* Adjust font size */
+  line-height: 1.2;
+  margin: 0; /* Remove default margin */
+}
+
+.intro-right p {
+  font-size: 30px; /* Increase font size */
+  line-height: 1.5; /* Adjust line height for readability */
+  margin-top: 10px; /* Decrease space between heading and paragraph */
+  margin-bottom: 20px; /* Space before social icons */
+}
+
+/* Highlighted text color for the name "Kaustubh" */
+.intro-right .text-accent {
+  color: #1e90ff; /* Light blue color */
+  background: linear-gradient(135deg, #ffd700, #ff8c00); /* Gradient color */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold; /* Optional: to make the name bolder */
+}
+
+/* Social Media Icons */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  justify-content: left; /* Center social icons */
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+}
+
+/* Education Section Styling */
+#education {
+  padding: 60px 0;
+  background: transparent; /* Keeping the galaxy background */
+}
+
+#education h2 {
+  text-align: left; /* Keep the title centered */
+  font-size: 48px;
+  margin: 0 auto 40px; /* Center the title with auto margins */
+  color: #ffd700; /* Match the "About" section color */
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+
+  /* Match the "About" section gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "YourFontFamily", sans-serif; /* Ensure the same font as the "About" section */
+  width: 70%; /* Keep it centered within 70% of the container */
+}
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timeline::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  background-color: white; /* Vertical line color */
+  top: 0;
+  bottom: 0;
+  left: 50%; /* Center the line */
+  transform: translateX(-50%);
+}
+
+/* General item layout */
+.education-item {
+  padding: 20px;
+  position: relative;
+  width: 50%;
+}
+
+/* Left-side text with right-side logo */
+.education-item.left {
+  left: 0;
+  text-align: right;
+}
+
+.education-item.left .logo-container {
+  left: 100%; /* Align logo to the right of the text, on the vertical line */
+  transform: translateX(-50%);
+}
+
+/* Right-side text with left-side logo */
+.education-item.right {
+  left: 50%;
+  text-align: left;
+}
+
+.education-item.right .logo-container {
+  left: 0; /* Align logo to the left of the text, on the vertical line */
+  transform: translateX(-50%);
+}
+
+/* Content styling with a background */
+.education-item .content {
+  background-color: rgba(13, 27, 42, 0.8); /* Background color */
+  padding: 20px; /* Padding inside the box */
+  border-radius: 8px; /* Rounded corners for the background box */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  text-align: left; /* Align all content to the left */
+}
+
+/* Common styles for the logos */
+.logo-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 70px;
+  height: 70px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.education-logo {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 50%;
+}
+
+/* Additional styles for content within the education section */
+.education-item .content h4 {
+  font-size: 24px; /* Larger heading for degree name */
+  color: #ffd700; /* Gold color for degree name */
+  margin-bottom: 10px;
+}
+
+.education-item .content h5 {
+  font-size: 20px; /* Slightly smaller heading for university name */
+  color: #ff8c00; /* Orange color for university name */
+  margin-bottom: 5px;
+}
+
+.education-item .content p {
+  font-size: 18px; /* Year text */
+  color: #ffffff; /* White color for the year */
+  margin-bottom: 15px;
+}
+
+.education-item .content ul {
+  list-style-type: disc; /* Bullet point style */
+  margin-left: 20px; /* Indent bullet points */
+  color: #ffffff; /* White color for the text */
+  font-size: 16px; /* Font size for bullet points */
+  line-height: 1.6; /* Space between bullet points */
+}
+
+/* Ensure everything within the education-item is left-aligned */
+.education-item .content {
+  text-align: left; /* Align all content to the left */
+}
+
+.education-item .content h4,
+.education-item .content h5,
+.education-item .content p,
+.education-item .content ul {
+  text-align: left; /* Left align the degree name, university name, years, and bullet points */
+}
+
+/* Skills Section */
+.section-heading {
+  font-size: 48px; /* Consistent font size */
+  margin-bottom: 30px; /* Space below the heading */
+  color: #ffd700; /* Yellow color */
+  font-family: Arial, sans-serif; /* Consistent font */
+  text-align: left; /* Align to the left */
+}
+
+.skills-container {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 100vh; /* Ensure the Skills section occupies the full viewport */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns */
+  gap: 10px; /* Adjust space between boxes */
+  justify-items: center;
+  margin-top: 40px; /* Space between heading and boxes */
+}
+
+.skill-box {
+  width: 210px;
+  height: 210px;
+  border: 2px solid #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: transparent;
+  border-radius: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skill-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ffd700;
+}
+
+.skill-box img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.skill-box p {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* General Section Spacing */
+section {
+  padding: 80px 0; /* Consistent spacing between sections */
+  min-height: 100vh; /* Ensure each section takes up full viewport height */
+}
+
+/* Certifications section */
+.certifications-container {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px; /* Gap between boxes */
+  justify-items: center;
+  margin-bottom: 40px; /* Space between rows */
+}
+
+/* Last row (center-align for two items) */
+.last-row-centered {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 20px;
+  justify-content: center; /* Centering the two boxes */
+}
+
+/* Certification item wrapper to contain box and title */
+.certification-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Certification box styling with glow effect */
+.certification-box {
+  width: 450px;
+  height: 300px; /* Rectangular shape */
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 5px; /* Only a small rounded edge */
+  transition: box-shadow 0.3s ease; /* Smooth transition for glow */
+}
+
+/* Glowing effect when hovered */
+.certification-box:hover {
+  box-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700, 0 0 60px #ffd700; /* Glowing yellow effect */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Image inside certification box */
+.certification-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Certification title (below the box) */
+.certification-title {
+  color: #ffffff;
+  font-size: 16px;
+  margin-top: 10px; /* Space between box and title */
+}
+
+/* Projects section */
+.projects-container {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px; /* Gap between boxes */
+  justify-items: center;
+  margin-top: 30px;
+}
+
+.project-box {
+  width: 450px; /* Width of the box */
+  height: 600px; /* Height to create the vertical orientation */
+  border: 2px solid #ffffff;
+  background-color: transparent;
+  border-radius: 5px;
+  overflow: hidden; /* To ensure content doesn't overflow outside the box */
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect for interactivity */
+.project-box:hover {
+  transform: translateY(-10px); /* Slight lift when hovered */
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); /* Glow on hover */
+}
+
+/* Image in the top half */
+.project-box img {
+  width: 100%;
+  height: 60%; /* Half of the box height */
+  object-fit: cover; /* To cover the entire top half */
+}
+
+/* Bottom half for project info */
+.project-info {
+  padding: 15px;
+  text-align: left;
+}
+
+/* Project title styling */
+.project-title {
+  color: #ffd700; /* Yellow color for title */
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Project description styling */
+.project-description {
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Contact Me section full page layout */
+.contact-container {
+  width: 50%;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  background-color: transparent;
+}
+
+/* Form fields styling */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+  width: 100%;
+}
+
+label {
+  display: block;
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+/* Input and textarea styling */
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #ffffff;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+textarea::placeholder {
+  color: #cccccc; /* Light grey placeholder color */
+  opacity: 1; /* Ensure the placeholder is fully visible */
+}
+
+textarea {
+  height: 150px;
+  resize: none;
+}
+
+/* Send button styling */
+.send-button {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #ff6347;
+  color: #000;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+/* Footer styling */
+footer {
+  background: rgba(13, 27, 42, 0.8);
+  padding: 1em 0;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav ul {
+    width: 90%;
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin-left: 10px; /* Adjust spacing for smaller screens */
+  }
+
+  section {
+    padding: 40px 10px;
+  }
+
+  .intro-right h1 {
+    font-size: 48px;
+  }
+
+  .intro-right p {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav ul li {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  section {
+    padding: 30px 10px;
+  }
+
+  footer {
+    padding: 0.5em 0;
+  }
+
+  .intro-right h1 {
+    font-size: 36px;
+  }
+
+  .intro-right p {
+    font-size: 20px;
+  }
+}

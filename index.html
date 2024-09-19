@@ -5,33 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kaustubh | Portfolio</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
     <!-- Navigation Menu -->
-    <nav>
+    <nav id="hamburger-nav">
       <div class="nav-brand">
-        <img
-          src="https://cdn-icons-png.flaticon.com/256/8372/8372498.png"
-          alt="Letter K"
-          class="initials-k"
-        />
-        <img
-          src="https://cdn-icons-png.flaticon.com/256/5226/5226024.png"
-          alt="Letter B"
-          class="initials-b"
-        />
+        <img src="images/initials/KB.png" alt="Letter KB" class="initials-kb" />
       </div>
-      <!-- Navigation links -->
-
-      <ul>
+      <!-- Desktop Navigation -->
+      <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#certifications">Certifications</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact" class="contact-link">Contact Me</a></li>
+      </ul>
+
+      <!-- Mobile Hamburger Icon -->
+      <button class="nav-toggle" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <!-- Mobile Menu -->
+      <ul class="mobile-menu">
+        <li><a href="#about" onclick="toggleMenu()">About</a></li>
+        <li><a href="#education" onclick="toggleMenu()">Education</a></li>
+        <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
         <li>
-          <a href="#contact" class="contact-link">Contact Me</a>
+          <a href="#certifications" onclick="toggleMenu()">Certifications</a>
         </li>
+        <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+        <li><a href="#contact" onclick="toggleMenu()">Contact Me</a></li>
       </ul>
     </nav>
 
@@ -62,19 +70,25 @@
           </p>
           <!-- Social Media Icons -->
           <div class="social-icons">
-            <a href="https://github.com/your-profile" target="_blank">
+            <a
+              href="https://github.com/KaustubhBhat?tab=repositories"
+              target="_blank"
+            >
               <img
                 src="https://cdn-icons-png.flaticon.com/256/25/25231.png"
                 alt="GitHub"
               />
             </a>
-            <a href="https://www.instagram.com/your-profile" target="_blank">
+            <a href="https://www.instagram.com/im_kb2/" target="_blank">
               <img
                 src="https://cdn-icons-png.flaticon.com/256/1409/1409946.png"
                 alt="Instagram"
               />
             </a>
-            <a href="https://www.linkedin.com/in/your-profile" target="_blank">
+            <a
+              href="https://www.linkedin.com/in/kaustubh-bhat007/"
+              target="_blank"
+            >
               <img
                 src="https://cdn-icons-png.flaticon.com/256/174/174857.png"
                 alt="LinkedIn"
@@ -122,12 +136,10 @@
       </div>
     </section>
 
-    <!-- Education Section -->
     <section id="education">
       <h2>Education</h2>
-      <!-- Title now matches the "About" section -->
       <div class="timeline">
-        <!-- First Education Entry -->
+        <!-- First Education Entry (Left Side) -->
         <div class="education-item left">
           <div class="content">
             <h5>MSc Software Engineering</h5>
@@ -143,13 +155,13 @@
           <div class="logo-container">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAfNwZlOUnnkQgom_W1uXN-JAdwYLYpBpo0w&s"
-              alt="XYZ University Logo"
+              alt="Cardiff University Logo"
               class="education-logo"
             />
           </div>
         </div>
 
-        <!-- Second Education Entry -->
+        <!-- Second Education Entry (Right Side) -->
         <div class="education-item right">
           <div class="content">
             <h5>B.E in Electronics and Telecommunication</h5>
@@ -165,12 +177,13 @@
           <div class="logo-container">
             <img
               src="https://iras-proxy-assets.s3.ap-south-1.amazonaws.com/606c2dde9e57c8048c1e29f3/logo/4-14-2021--2-03-16-pm-uop-logo.png"
-              alt="ABC High School Logo"
+              alt="SPPU Logo"
               class="education-logo"
             />
           </div>
         </div>
-        <!-- Third Education Entry -->
+
+        <!-- Third Education Entry (Left Side) -->
         <div class="education-item left">
           <div class="content">
             <h5>Data Analytics Intern</h5>
@@ -187,7 +200,7 @@
           <div class="logo-container">
             <img
               src="https://pbs.twimg.com/profile_images/901143541119766528/psQ-ErHf_400x400.jpg"
-              alt="XYZ University Logo"
+              alt="Girlscript Technologies Logo"
               class="education-logo"
             />
           </div>
@@ -501,10 +514,7 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-      &copy; 2024 Kaustubh Bhat. All rights reserved.
-      <br />
-    </footer>
+    <footer>&copy; 2024 Kaustubh Bhat. All rights reserved.</footer>
 
     <!-- Include JavaScript -->
     <script src="script.js"></script>

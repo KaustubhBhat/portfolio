@@ -19,8 +19,18 @@ body {
   overflow-y: auto;
 }
 
+.intro-container,
+.about-container,
+.skills-container,
+.certifications-container,
+.projects-container,
+.contact-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 /* Navigation */
-/* Fixed navigation bar */
+
 nav {
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
@@ -28,7 +38,7 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 10px 20px;
+  padding: 10px;
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -36,14 +46,14 @@ nav {
 }
 
 /* Highlight active link by changing font color and making it bold */
-ul li a.active,
-ul li a:hover {
+.nav-links li a.active,
+.nav-links li a:hover {
   color: blueviolet; /* Change the font color */
   font-weight: bold; /* Make the font bold */
 }
 
 /* Ensure links have default styling */
-ul li a {
+.nav-links li a {
   color: #fff; /* Default link color */
   text-decoration: none; /* Remove underline from links */
 }
@@ -56,12 +66,13 @@ nav .nav-brand {
 }
 
 nav .nav-brand img {
-  height: 30px;
+  width: 90px;
+  height: auto;
   margin-right: 5px;
 }
 
-/* Navigation Sections */
-nav ul {
+/* Navigation Sections (for desktop) */
+.nav-links {
   list-style-type: none;
   display: flex;
   margin: 0;
@@ -72,17 +83,131 @@ nav ul {
   align-items: center;
 }
 
-nav ul li {
+.nav-links li {
   display: inline-block;
 }
 
-nav ul li a {
+.nav-links li a {
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
   font-size: 20px;
   padding: 10px 15px;
   display: inline-block;
+}
+
+/* Contact Me button */
+.contact-link {
+  background-color: #ff6347;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  z-index: 1;
+}
+
+.contact-link:hover {
+  background-color: #ff4500;
+}
+
+/* Hamburger Icon (Hidden on Desktop) */
+.nav-toggle {
+  display: none; /* Hidden by default on desktop */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  position: relative; /* Ensure it stays in place */
+}
+
+/* Individual bars of the hamburger */
+.nav-toggle .bar {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+/* Change the second bar (middle one) to invisible when in cross mode */
+.nav-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-50px); /* Slide out of view */
+}
+
+/* First bar transforms into the top half of the cross */
+.nav-toggle.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px); /* Top half of the cross */
+}
+
+/* Third bar transforms into the bottom half of the cross */
+.nav-toggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px); /* Bottom half of the cross */
+}
+
+/* Mobile Menu Styles */
+.mobile-menu {
+  display: none; /* Hidden initially */
+  background-color: #1d2b53; /* Set the background color */
+  position: absolute;
+  top: 70px; /* Position right below the hamburger icon */
+  right: 0; /* Align the menu to the right edge of the screen */
+  width: 130px; /* Set a fixed width for the vertical rectangle */
+  max-height: 400px; /* Decreased height of the mobile menu */
+  overflow-y: auto; /* Enable vertical scroll if the menu is too tall */
+  flex-direction: column;
+  transition: max-height 0.3s ease; /* Slide-down effect */
+  z-index: 999;
+  border-radius: 0 0 0 10px; /* Optional: Rounded bottom-left corners */
+}
+
+/* Ensure the mobile menu opens smoothly */
+.mobile-menu.open {
+  display: flex;
+}
+
+/* Adjust padding for menu items */
+.mobile-menu li {
+  padding: 10px;
+  text-align: center;
+}
+
+/* Style for mobile menu links */
+.mobile-menu li a {
+  color: white; /* Ensure text color contrasts well with the background */
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* Hover effect for mobile menu links */
+.mobile-menu li a:hover {
+  color: blueviolet; /* Hover effect */
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+  /* Show hamburger icon on mobile */
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* Hide desktop navigation links on mobile */
+  .nav-links {
+    display: none;
+  }
+  nav .nav-brand {
+    margin-left: 0%; /* Positions KB at 15% from the left */
+    display: flex;
+    align-items: left;
+  }
 }
 
 /* About Me Section */
@@ -105,6 +230,8 @@ nav ul li a {
   width: 70%; /* Central 70% width */
   height: 100%; /* Full height */
   flex-wrap: wrap; /* Ensure responsive wrapping */
+  flex-direction: column;
+  gap: 20px;
 }
 
 /* Left side: Text content */
@@ -146,47 +273,55 @@ nav ul li a {
 }
 
 /* Responsive Design */
+
+/* Mobile Styles (max-width: 768px) */
 @media (max-width: 768px) {
+  #about {
+    height: auto; /* Allow section height to adjust */
+    padding: 20px 0; /* Add padding for mobile */
+  }
+
   .about-container {
-    flex-direction: column-reverse; /* Stack vertically on small screens */
-    text-align: center; /* Center text */
-    justify-content: center; /* Ensure proper centering on small screens */
+    flex-direction: column; /* Stack the text and image vertically */
+    width: 90%; /* Reduce width for mobile */
+    height: auto; /* Let content determine height */
   }
 
   .about-left {
-    padding-right: 0;
-    margin-top: 20px; /* Space between image and text */
+    padding-right: 0; /* Remove right padding on mobile */
+    text-align: left; /* Center align text for mobile */
   }
 
   .about-left h2 {
-    font-size: 36px; /* Adjusted font size for smaller screens */
+    font-size: 48px; /* Smaller font for mobile */
+    margin-bottom: 20px;
   }
 
   .about-left p {
-    font-size: 18px; /* Adjusted font size for smaller screens */
+    font-size: 18px; /* Adjust font size */
+    margin-bottom: 15px; /* Less margin on mobile */
+  }
+
+  .about-right {
+    margin-top: 20px; /* Add space between text and image */
+    justify-content: center;
   }
 
   .about-image {
-    max-width: 100%; /* Adjust image size for small screens */
+    max-width: 80%; /* Allow the image to take full width */
   }
 }
 
-/* Contact Me button */
-.contact-link {
-  background-color: #ff6347;
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 16px;
-  cursor: pointer;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-  z-index: 1;
-}
+/* Desktop Styles (min-width: 768px) */
+@media (min-width: 768px) {
+  .about-container {
+    flex-direction: row; /* Horizontal layout for desktop */
+  }
 
-.contact-link:hover {
-  background-color: #ff4500;
+  .about-left,
+  .about-right {
+    flex: 1;
+  }
 }
 
 /* Introduction Section */
@@ -230,7 +365,7 @@ nav ul li a {
 }
 
 .intro-right h1 {
-  font-size: 70px; /* Adjust font size */
+  font-size: 65px; /* Adjust font size */
   line-height: 1.2;
   margin: 0; /* Remove default margin */
 }
@@ -240,6 +375,114 @@ nav ul li a {
   line-height: 1.5; /* Adjust line height for readability */
   margin-top: 10px; /* Decrease space between heading and paragraph */
   margin-bottom: 20px; /* Space before social icons */
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  justify-content: left; /* Center social icons */
+}
+
+@media (max-width: 768px) {
+  /* Introduction Section */
+  #introduction {
+    display: flex;
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    height: auto; /* Adjust height for mobile */
+    background: transparent;
+  }
+  .social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center; /* Center social icons */
+  }
+  .intro-container {
+    display: flex;
+    flex-direction: column; /* Stack image and text vertically */
+    width: 90%; /* Make container width smaller on mobile */
+    height: auto; /* Adjust height for mobile */
+    align-items: center; /* Center items horizontally */
+    padding: 20px; /* Add some padding around */
+  }
+
+  .intro-left {
+    flex: none; /* Remove flex-grow */
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    width: 100%; /* Full width for image */
+    margin-bottom: 20px; /* Space between image and text */
+  }
+
+  .intro-image {
+    max-width: 90%; /* Adjust image size for mobile */
+    height: auto;
+  }
+
+  .intro-right {
+    flex: none; /* Remove flex-grow */
+    width: 100%; /* Full width for text */
+    text-align: center; /* Center align text */
+  }
+
+  .intro-right h1 {
+    font-size: 38px; /* Adjust font size for mobile */
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .intro-right p {
+    font-size: 17px; /* Adjust font size for mobile */
+    line-height: 1.5;
+    margin-top: 10px;
+    margin-bottom: 20px; /* Space before social icons */
+  }
+
+  /* Highlighted text color for the name "Kaustubh" */
+  .intro-right .text-accent {
+    color: #1e90ff;
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+  }
+
+  /* Social Media Icons */
+  .social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center; /* Center social icons on mobile */
+    margin-top: 20px; /* Add space on top if needed */
+  }
+
+  .social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Smaller size for mobile */
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+  }
+
+  .social-icons img {
+    width: 25px; /* Smaller icon size for mobile */
+    height: 25px;
+  }
+
+  /* Center the logos in the mobile view */
+  .intro-right .social-icons {
+    display: flex;
+    flex-direction: row; /* Stack icons vertically */
+    align-items: right; /* Center align icons horizontally */
+    gap: 15px;
+  }
 }
 
 /* Highlighted text color for the name "Kaustubh" */
@@ -252,11 +495,6 @@ nav ul li a {
 }
 
 /* Social Media Icons */
-.social-icons {
-  display: flex;
-  gap: 15px;
-  justify-content: left; /* Center social icons */
-}
 
 .social-icons a {
   display: inline-flex;
@@ -278,23 +516,22 @@ nav ul li a {
 /* Education Section Styling */
 #education {
   padding: 60px 0;
-  background: transparent; /* Keeping the galaxy background */
+  background: transparent; /* Keep the galaxy background */
 }
 
 #education h2 {
-  text-align: left; /* Keep the title centered */
+  text-align: left;
   font-size: 48px;
-  margin: 0 auto 40px; /* Center the title with auto margins */
-  color: #ffd700; /* Match the "About" section color */
+  margin: 0 auto 40px;
+  color: #ffd700;
   background: linear-gradient(135deg, #ffd700, #ff8c00);
-
-  /* Match the "About" section gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: "YourFontFamily", sans-serif; /* Ensure the same font as the "About" section */
-  width: 70%; /* Keep it centered within 70% of the container */
+  font-family: "YourFontFamily", sans-serif;
+  width: 70%;
 }
 
+/* Timeline Layout for Desktop */
 .timeline {
   position: relative;
   max-width: 1000px;
@@ -305,24 +542,20 @@ nav ul li a {
   content: "";
   position: absolute;
   width: 2px;
-  background-color: white; /* Vertical line color */
+  background-color: white;
   top: 0;
   bottom: 0;
   left: 50%; /* Center the line */
   transform: translateX(-50%);
 }
 
-/* General item layout */
-.education-item {
+/* Desktop Left-aligned item */
+.education-item.left {
   padding: 20px;
   position: relative;
   width: 50%;
-}
-
-/* Left-side text with right-side logo */
-.education-item.left {
   left: 0;
-  text-align: right;
+  text-align: left;
 }
 
 .education-item.left .logo-container {
@@ -330,8 +563,11 @@ nav ul li a {
   transform: translateX(-50%);
 }
 
-/* Right-side text with left-side logo */
+/* Desktop Right-aligned item */
 .education-item.right {
+  padding: 20px;
+  position: relative;
+  width: 50%;
   left: 50%;
   text-align: left;
 }
@@ -341,16 +577,38 @@ nav ul li a {
   transform: translateX(-50%);
 }
 
-/* Content styling with a background */
+/* General content styling */
 .education-item .content {
-  background-color: rgba(13, 27, 42, 0.8); /* Background color */
-  padding: 20px; /* Padding inside the box */
-  border-radius: 8px; /* Rounded corners for the background box */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-  text-align: left; /* Align all content to the left */
+  background-color: rgba(13, 27, 42, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Ensure content stays within the box */
 }
 
-/* Common styles for the logos */
+.education-item .content h5 {
+  font-size: 20px;
+  color: #ff8c00;
+  margin-bottom: 5px;
+  word-wrap: break-word; /* Ensure long words break and do not overflow */
+}
+
+.education-item .content p {
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 15px;
+  word-wrap: break-word; /* Ensure long words break and do not overflow */
+}
+
+.education-item .content ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word; /* Ensure long words break and do not overflow */
+}
+
 .logo-container {
   position: absolute;
   top: 50%;
@@ -359,7 +617,6 @@ nav ul li a {
   height: 70px;
   background-color: white;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -372,43 +629,44 @@ nav ul li a {
   border-radius: 50%;
 }
 
-/* Additional styles for content within the education section */
-.education-item .content h4 {
-  font-size: 24px; /* Larger heading for degree name */
-  color: #ffd700; /* Gold color for degree name */
-  margin-bottom: 10px;
-}
+/* For Mobile */
+@media (max-width: 768px) {
+  /* Adjust text box width only for mobile */
+  .education-item {
+    width: calc(100% - 40px); /* Full width minus margin */
+    margin-left: 20px; /* Adjust margin for better alignment */
+    margin-right: 20px; /* Adjust margin for better alignment */
+  }
 
-.education-item .content h5 {
-  font-size: 20px; /* Slightly smaller heading for university name */
-  color: #ff8c00; /* Orange color for university name */
-  margin-bottom: 5px;
-}
+  .timeline::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    background-color: white;
+    top: 0;
+    bottom: 0;
+    left: 50%; /* Center the line */
+    transform: translateX(-50%);
+  }
 
-.education-item .content p {
-  font-size: 18px; /* Year text */
-  color: #ffffff; /* White color for the year */
-  margin-bottom: 15px;
-}
+  .education-item.left .logo-container {
+    left: 90%; /* Align logo to the right of the text */
+    transform: translateX(-50%) translateY(11px); /* Move down by 10px */
+  }
 
-.education-item .content ul {
-  list-style-type: disc; /* Bullet point style */
-  margin-left: 20px; /* Indent bullet points */
-  color: #ffffff; /* White color for the text */
-  font-size: 16px; /* Font size for bullet points */
-  line-height: 1.6; /* Space between bullet points */
-}
+  .education-item.right .logo-container {
+    left: -10%; /* Align logo to the left of the text, on the vertical line */
+    transform: translateX(-50%);
+  }
 
-/* Ensure everything within the education-item is left-aligned */
-.education-item .content {
-  text-align: left; /* Align all content to the left */
-}
+  /* Adjust padding for left and right items */
+  .education-item.left {
+    padding-left: 10px; /* Space for logo */
+  }
 
-.education-item .content h4,
-.education-item .content h5,
-.education-item .content p,
-.education-item .content ul {
-  text-align: left; /* Left align the degree name, university name, years, and bullet points */
+  .education-item.right {
+    padding-left: 10px; /* Space for logo */
+  }
 }
 
 /* Skills Section */
@@ -469,6 +727,29 @@ nav ul li a {
   font-size: 16px;
   font-weight: bold;
   margin: 0;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 10px; /* Space between boxes */
+  }
+
+  .skill-box {
+    width: 100%; /* Full width for mobile */
+    height: auto; /* Auto height */
+    max-width: 210px; /* Maintain the maximum width */
+  }
+
+  .skill-box img {
+    width: 100px; /* Adjust image size for mobile */
+    height: 100px;
+  }
+
+  .skill-box p {
+    font-size: 14px; /* Adjust font size for mobile */
+  }
 }
 
 /* General Section Spacing */
@@ -541,6 +822,25 @@ section {
   margin-top: 10px; /* Space between box and title */
 }
 
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .certifications-grid {
+    grid-template-columns: 1fr; /* 1 column */
+    gap: 20px; /* Space between boxes */
+  }
+
+  .certification-box {
+    width: 100%; /* Full width for mobile */
+    height: auto; /* Auto height */
+    max-width: 450px; /* Maintain the maximum width */
+  }
+
+  .certification-title {
+    font-size: 14px; /* Adjust font size for mobile */
+    margin-top: 10px; /* Space between box and title */
+  }
+}
+
 /* Projects section */
 .projects-container {
   width: 70%;
@@ -597,6 +897,38 @@ section {
   color: #ffffff;
   font-size: 16px;
   line-height: 1.5;
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+  /* Adjust width as needed */
+  .projects-grid {
+    grid-template-columns: 1fr; /* 1 column for mobile */
+    gap: 20px; /* Space between boxes */
+    margin-top: 20px; /* Space between heading and boxes */
+  }
+
+  .project-box {
+    width: 100%; /* Full width of the container */
+    height: auto; /* Adjust height based on content */
+  }
+
+  .project-box img {
+    height: 40%; /* Adjust image height for mobile */
+  }
+
+  .project-info {
+    padding: 10px; /* Adjust padding for mobile */
+    text-align: center; /* Center align text on mobile */
+  }
+
+  .project-title {
+    font-size: 18px; /* Smaller font size for mobile */
+  }
+
+  .project-description {
+    font-size: 14px; /* Smaller font size for mobile */
+  }
 }
 
 /* Contact Me section full page layout */
@@ -671,6 +1003,38 @@ textarea {
   color: #000;
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
 }
+/* Mobile Styles */
+@media (max-width: 767px) {
+  /* Adjust width as needed */
+  .contact-container {
+    width: 90%; /* Adjust width to be more appropriate for smaller screens */
+    padding: 20px; /* Less padding for mobile */
+  }
+
+  /* Form fields styling */
+  .form-group {
+    margin-bottom: 15px; /* Adjust space between form fields */
+  }
+
+  label {
+    font-size: 16px; /* Slightly smaller font size for mobile */
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-size: 14px; /* Smaller font size for input fields */
+  }
+
+  textarea {
+    height: 120px; /* Adjust height for mobile screens */
+  }
+
+  .send-button {
+    padding: 10px 20px; /* Adjust padding for the button */
+    font-size: 16px; /* Smaller font size for the button */
+  }
+}
 
 /* Footer styling */
 footer {
@@ -682,54 +1046,11 @@ footer {
   z-index: 1;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  nav ul {
-    width: 90%;
-    justify-content: center;
-  }
-
-  nav ul li {
-    margin-left: 10px; /* Adjust spacing for smaller screens */
-  }
-
-  section {
-    padding: 40px 10px;
-  }
-
-  .intro-right h1 {
-    font-size: 48px;
-  }
-
-  .intro-right p {
-    font-size: 22px;
-  }
-}
-
-@media (max-width: 480px) {
-  nav ul {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  nav ul li {
-    margin-left: 0;
-    margin-bottom: 10px;
-  }
-
-  section {
-    padding: 30px 10px;
-  }
-
+/* Mobile Styles */
+@media (max-width: 767px) {
+  /* Adjust width as needed */
   footer {
-    padding: 0.5em 0;
-  }
-
-  .intro-right h1 {
-    font-size: 36px;
-  }
-
-  .intro-right p {
-    font-size: 20px;
+    padding: 0.5em 0; /* Less padding for mobile screens */
+    font-size: 14px; /* Adjust font size if necessary */
   }
 }

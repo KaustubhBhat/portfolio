@@ -1,3 +1,13 @@
+// Define toggleMenu function globally
+function toggleMenu() {
+  const menu = document.querySelector(".mobile-menu");
+  const icon = document.querySelector(".nav-toggle");
+
+  // Toggle 'open' class for both the icon and menu
+  menu.classList.toggle("open");
+  icon.classList.toggle("open");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".dots");
   const dotSize = 5; // Small dot size
@@ -52,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createDot(x, y);
   }
 
-  // JavaScript to handle scrolling to the contact section when the button is clicked
+  // Smooth scrolling for navigation links
   document.querySelectorAll("nav a").forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -68,57 +78,51 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll("nav a");
+  // Active link highlighting on scroll
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll("nav a");
 
-    function changeActiveLink() {
-      let index = sections.length;
+  function changeActiveLink() {
+    let index = sections.length;
 
-      while (--index && window.scrollY + 50 < sections[index].offsetTop) {}
+    while (--index && window.scrollY + 50 < sections[index].offsetTop) {}
 
-      navLinks.forEach((link) => link.classList.remove("active"));
-      navLinks[index].classList.add("active");
-    }
+    navLinks.forEach((link) => link.classList.remove("active"));
+    navLinks[index].classList.add("active");
+  }
 
-    changeActiveLink();
-    window.addEventListener("scroll", changeActiveLink);
+  window.addEventListener("scroll", changeActiveLink);
 
-    document
-      .getElementById("contact-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevents the default form submission
+  // Contact form submission handling
+  document
+    .getElementById("contact-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevents the default form submission
 
-        var formData = new FormData(this);
+      const formData = new FormData(this);
 
-        fetch(this.action, {
-          method: "POST",
-          body: formData,
-          headers: { Accept: "application/json" },
-        }).then(function (response) {
-          if (response.ok) {
-            alert("Thank you for your message. I'll get back to you soon!");
-            document.getElementById("contact-form").reset(); // Clear the form after submission
-          } else {
-            alert("Oops! Something went wrong. Please try again.");
-          }
-        });
+      fetch(this.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      }).then(function (response) {
+        if (response.ok) {
+          alert("Thank you for your message. I'll get back to you soon!");
+          document.getElementById("contact-form").reset(); // Clear the form after submission
+        } else {
+          alert("Oops! Something went wrong. Please try again.");
+        }
       });
+    });
 
-    // Function to handle the display of sections
-    function showSection(sectionId) {
-      // Hide all sections
-      document.querySelectorAll("section").forEach((section) => {
-        section.style.display = "none";
-      });
+  // Ensure the menu toggle function works
+  document.querySelector(".nav-toggle").addEventListener("click", toggleMenu);
 
-      // Show the selected section
-      document.getElementById(sectionId).style.display = "block";
+  // Show Introduction section on page load
+  window.onload = function () {
+    const introSection = document.getElementById("introduction");
+    if (introSection) {
+      introSection.style.display = "block";
     }
-
-    // On page load, show the introduction section by default
-    window.onload = function () {
-      showSection("introduction");
-    };
-  });
+  };
 });
